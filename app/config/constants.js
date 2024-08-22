@@ -1,0 +1,1 @@
+export const JWT_SECRET = '#V01CE@CRM@5ECRET@KEY#!';

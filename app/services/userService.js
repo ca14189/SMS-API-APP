@@ -1,7 +1,8 @@
 import db from '../models/index.js';
 import bcrypt from 'bcrypt';
 import AppError from "../error/app-error.js";
-import security from "../utils/security.js";
+import { GetToken } from '../utils/security.js';
+
 
 export const userLoginService = async ({ email, password }) => {
     try {
@@ -19,7 +20,7 @@ export const userLoginService = async ({ email, password }) => {
                 };
 
                 // Generate access token
-                const access_token = security.getToken(userDetails);
+                const access_token = GetToken(userDetails);
 
                 return {
                     authToken: access_token,

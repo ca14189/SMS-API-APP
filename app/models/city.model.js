@@ -1,14 +1,24 @@
 export default (sequelize, Sequelize) => {
     const City = sequelize.define('City', {
-        district_id: {
+        id: {
             type: Sequelize.INTEGER,
-            allowNull: false
+            autoIncrement: true,
+            primaryKey: true,
+        },
+        districtId: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Districts', // Ensure this matches the correct table name
+                key: 'id'
+            },
         },
         name: {
             type: Sequelize.STRING,
             allowNull: false
-        },
+        }
     });
+
 
     return City;
 };

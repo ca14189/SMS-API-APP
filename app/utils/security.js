@@ -1,22 +1,21 @@
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET } from '../config/constants.js';
 
-const getToken = (userDetails) => {
-    console.log("key", JWT_SECRET);
+export const GetToken = (userDetails) => {
     const token = jwt.sign(userDetails, JWT_SECRET, { expiresIn: 3600 });
     // console.log("Generated token", token);
     return token
 
 }
 
-const getRefreshToken = (subject) => {
+export const GetRefreshToken = (subject) => {
     const token = jwt.sign(subject, JWT_SECRET, {
         expiresIn: 3600
     });
     return token
 }
 
-const verifyToken = (token) => {
+export const VerifyToken = (token) => {
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
         return decoded
@@ -24,9 +23,3 @@ const verifyToken = (token) => {
         throw err;
     }
 }
-
-
-export default { getToken, getRefreshToken, verifyToken };
-
-
-

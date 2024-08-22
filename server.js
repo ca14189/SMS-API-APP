@@ -1,7 +1,11 @@
 import express from 'express';
 import cors from 'cors';
-import db from './app/models/index.js'; // Ensure correct path and extension
-
+import db from './app/models/index.js';
+import tutorialRoutes from './app/routes/turorial.routes.js';
+import countryRoutes from './app/routes/country.routes.js';
+import authRoutes from './app/routes/user.routes.js';
+import getUserRoleRoutes from './app/routes/userRole.routes.js';
+import saas_cust_routes from './app/routes/saas_cust_route.js'
 const app = express();
 
 const corsOptions = {
@@ -29,21 +33,26 @@ app.get('/', (req, res) => {
   res.json({ message: 'Welcome to kaunsa coder application.' });
 });
 
-// Import and use routes
-import tutorialRoutes from './app/routes/turorial.routes.js';
-import countryRoutes from './app/routes/country.routes.js';
-import authRoutes from './app/routes/user.routes.js';
-import getUserRoleRoutes from './app/routes/userRole.routes.js';
+
 
 app.use('/api/tutorials', tutorialRoutes);
 app.use('/api/countries', countryRoutes);
 app.use('/saas/user-login', authRoutes);
 app.use('/saas/create-user-role', getUserRoleRoutes);
 
-// Set port, listen for requests
+
+//for saas_cust routers
+app.use('/saas', saas_cust_routes)
+
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-
+const errorHandler = (err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'Internal Server Error';
+  res.status(statusCode).json({ errorMessage: message });
+};
+app.use(errorHandler);

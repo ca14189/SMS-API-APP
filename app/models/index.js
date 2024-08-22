@@ -37,28 +37,45 @@ const db = {
   tutorials: tutorialModel(sequelize, Sequelize),
   countries: countryModel(sequelize, Sequelize),
   states: stateModel(sequelize, Sequelize),
-  cities:cityModel(sequelize,Sequelize),
-  districts:districtModel(sequelize,Sequelize),
-  users: saasUserModel(sequelize,Sequelize),
-  user_Role: saasUserRole(sequelize,Sequelize),
-  user_type:user_typeModel(sequelize,Sequelize),
-  saas_cust_role: saas_cust_roleModel(sequelize,Sequelize),
-  saas_cust_user:saas_cust_userModel(sequelize,Sequelize),
-  saas_cust:saas_custModel(sequelize,Sequelize),
-  saas_otp:saas_otpModel(sequelize,Sequelize),
-  saas_school_class_section:saas_school_class_sectionModel(sequelize,Sequelize),
-  saas_school_class:saas_school_classModel(sequelize,Sequelize),
-  saas_school_parent:saas_school_parentModel(sequelize,Sequelize),
-  saas_school_section:saas_school_sectionModel(sequelize,Sequelize),
-  saas_school_student:saas_school_studentModel(sequelize,Sequelize),
-  school_type:school_typeModel(sequelize,Sequelize),
-
-
+  cities: cityModel(sequelize, Sequelize),
+  districts: districtModel(sequelize, Sequelize),
+  users: saasUserModel(sequelize, Sequelize),
+  user_Role: saasUserRole(sequelize, Sequelize),
+  user_type: user_typeModel(sequelize, Sequelize),
+  saas_cust_role: saas_cust_roleModel(sequelize, Sequelize),
+  saas_cust_user: saas_cust_userModel(sequelize, Sequelize),
+  saas_cust: saas_custModel(sequelize, Sequelize),
+  saas_otp: saas_otpModel(sequelize, Sequelize),
+  saas_school_class_section: saas_school_class_sectionModel(sequelize, Sequelize),
+  saas_school_class: saas_school_classModel(sequelize, Sequelize),
+  saas_school_parent: saas_school_parentModel(sequelize, Sequelize),
+  saas_school_section: saas_school_sectionModel(sequelize, Sequelize),
+  saas_school_student: saas_school_studentModel(sequelize, Sequelize),
+  school_type: school_typeModel(sequelize, Sequelize),
 
 };
 
-// Establish Relationships
-db.countries.hasMany(db.states, { foreignKey: 'countryId' });
-db.states.belongsTo(db.countries, { foreignKey: 'countryId' });
+// // Establish Relationships
+
+// Define relationships
+// db.countries.hasMany(db.states, { foreignKey: 'country_Id', as: 'states' });
+// db.states.belongsTo(db.countries, { foreignKey: 'country_Id', as: 'countries' });
+
+// db.states.hasMany(db.districts, { foreignKey: 'state_Id', as: 'districts' });
+// db.districts.belongsTo(db.states, { foreignKey: 'state_Id', as: 'state' });
+
+// db.districts.hasMany(db.cities, { foreignKey: 'district_Id', as: 'cities' });
+// db.cities.belongsTo(db.districts, { foreignKey: 'district_Id', as: 'districts' });
+
+// // Establish relationships
+// Object.keys(db).forEach((modelName) => {
+//   if (db[modelName].associate) {
+//     db[modelName].associate(db);
+//   }
+
+
+// });
+
+
 
 export default db;

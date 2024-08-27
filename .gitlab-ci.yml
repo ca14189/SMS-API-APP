@@ -1,4 +1,5 @@
 build:
+  image: node:lts
   script:
     - npm install
     - node server.js

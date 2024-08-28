@@ -1,6 +1,20 @@
-build:
-  image: node:lts
+image: node:lts
+
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
   script:
-    - npm install joi
     - npm install
-    - node server.js
+    - npm test
+
+deploy:
+  stage: deploy
+  script:
+    - npm install
+    - npm run build
+    - pm2 deploy
+  only:
+    - main

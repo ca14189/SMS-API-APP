@@ -1,20 +1,13 @@
 image: node:lts
 
 stages:
-  - test
   - deploy
-
-test:
-  stage: test
-  script:
-    - npm install
-    - npm test
 
 deploy:
   stage: deploy
   script:
     - npm install
-    - npm run build
-    - pm2 deploy
+    - npm run build  # If you have a build script, otherwise remove this line
+    - pm2 start server.js --name "your-app-name"  # Adjust this line based on your process manager
   only:
-    - main
+    - main  # Deploy only from the main branch

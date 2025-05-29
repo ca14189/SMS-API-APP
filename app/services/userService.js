@@ -26,7 +26,7 @@ export const userLoginService = async ({ email, password }) => {
                     authToken: access_token,
                 };
             } else {
-                throw new AppError("User Password Wrong..");
+                throw new AppError("User Password is Wrong..");
             }
         } else {
             throw new AppError("User Email is Not Registered");
